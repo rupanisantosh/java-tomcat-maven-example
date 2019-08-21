@@ -10,11 +10,12 @@ node{
       }
      stage ('Test-JUnit'){
          sh "'${mvnHome}/bin/mvn' test surefire-report:report"
+         sh 'echo "Tests Succeded."'
       }  
     
       stage('Deploy') {     
             sshagent(['Tomcat-jenkins-SSH']) {
-                  sh 'echo "Build Succeded."'
+                  sh 'echo "Deploy Succeded."'
                ////sh 'scp -o StrictHostKeyChecking=no target/tomcatdeploymnetdemo.war jenkins@34.236.124.22:/opt/tomcat/webapps'
                   sh 'scp -o StrictHostKeyChecking=no target/*.war jenkins@34.236.124.22:/opt/apache-tomcat-8.5.43/webapps'
               
